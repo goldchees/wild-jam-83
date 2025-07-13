@@ -1,18 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://bewnpp2hypupy"]
+[gd_scene load_steps=5 format=3 uid="uid://bewnpp2hypupy"]
 
 [ext_resource type="PackedScene" uid="uid://310ph4lsp0t8" path="res://actor.tscn" id="1_37kl0"]
 [ext_resource type="Script" uid="uid://cxpfrldjugq8j" path="res://player.gd" id="2_8uh7m"]
+[ext_resource type="PackedScene" uid="uid://b5813cp1ww1g8" path="res://entity.tscn" id="3_6uqi0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8uh7m"]
 radius = 32.0
 
 [node name="Test" type="Node2D"]
 
-[node name="Entity" parent="." instance=ExtResource("1_37kl0")]
-position = Vector2(536, 231)
+[node name="Entity" parent="." instance=ExtResource("3_6uqi0")]
+position = Vector2(608, 191)
 
-[node name="Entity2" parent="." instance=ExtResource("1_37kl0")]
-position = Vector2(832, 225)
+[node name="Entity2" parent="." instance=ExtResource("3_6uqi0")]
+position = Vector2(890, 353)
 
 [node name="Player" parent="." node_paths=PackedStringArray("host") instance=ExtResource("1_37kl0")]
 position = Vector2(433, 352)
@@ -27,5 +28,12 @@ shape = SubResource("CircleShape2D_8uh7m")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(756, 414)
+
+[node name="energyBar" type="ProgressBar" parent="."]
+offset_left = 417.0
+offset_top = 667.0
+offset_right = 1090.0
+offset_bottom = 694.0
+value = 50.0
 
 [editable path="Player"]
