@@ -10,8 +10,8 @@ var aim: Vector2
 var reach = 200
 
 var tentacle_tip: Vector2
-var tentacle_speed = 400
-var tentacle_reach = 124
+var tentacle_speed = 600
+var tentacle_reach = 200
 
 var reaching = false
 var potential_host: Actor = null
@@ -20,17 +20,16 @@ func _process(delta: float) -> void:
 
     if (Input.is_action_just_pressed(reach_action)):
         reaching = true
-        tentacle_tip = aim * 32
+        tentacle_tip = Vector2.ZERO
 
     if (reaching):
         var q = PhysicsPointQueryParameters2D.new()
         q.position = global_position + tentacle_tip
-        q.exclude = [self]
         var results = get_world_2d().direct_space_state.intersect_point(q)
         for r in results:
             if (r.collider is Actor):
-                potential_host = r.collider
-                
+                if (r.collider != host):
+                    potential_host = r.collider
             pass
     
     if (Input.is_action_just_released(reach_action)):
@@ -91,7 +90,6 @@ func _draw():
     draw_circle(Vector2.ZERO,48,Color.GREEN,false)
 
     if (reaching):
-        
         var thickness = 4
         if (potential_host): thickness = 8
         draw_line(Vector2.ZERO,tentacle_tip,Color.GREEN,thickness)
