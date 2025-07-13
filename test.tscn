@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bewnpp2hypupy"]
+
+[ext_resource type="PackedScene" uid="uid://310ph4lsp0t8" path="res://actor.tscn" id="1_37kl0"]
+[ext_resource type="Script" uid="uid://cxpfrldjugq8j" path="res://player.gd" id="2_8uh7m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8uh7m"]
+radius = 32.0
+
+[node name="Test" type="Node2D"]
+
+[node name="Entity" parent="." instance=ExtResource("1_37kl0")]
+position = Vector2(536, 231)
+
+[node name="Entity2" parent="." instance=ExtResource("1_37kl0")]
+position = Vector2(832, 225)
+
+[node name="Player" parent="." node_paths=PackedStringArray("host") instance=ExtResource("1_37kl0")]
+position = Vector2(433, 352)
+script = ExtResource("2_8uh7m")
+host = NodePath(".")
+
+[node name="Sprite2D" parent="Player" index="0"]
+modulate = Color(0.153333, 0.301549, 0.121444, 1)
+
+[node name="CollisionShape2D" parent="Player" index="1"]
+shape = SubResource("CircleShape2D_8uh7m")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(756, 414)
+
+[editable path="Player"]
