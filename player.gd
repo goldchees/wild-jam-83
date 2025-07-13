@@ -15,14 +15,16 @@ var tentacle_reach = 200
 
 var reaching = false
 var potential_host: Actor = null
+var wiggle = 0
 
 func _process(delta: float) -> void:
-
     if (Input.is_action_just_pressed(reach_action)):
         reaching = true
         tentacle_tip = Vector2.ZERO
+        wiggle = 0
 
     if (reaching):
+        wiggle += delta
         var q = PhysicsPointQueryParameters2D.new()
         q.position = global_position + tentacle_tip
         var results = get_world_2d().direct_space_state.intersect_point(q)
@@ -43,6 +45,7 @@ func _process(delta: float) -> void:
     var input_vector = Input.get_vector(wasd[0],wasd[1],wasd[2],wasd[3])
     if (input_vector.length_squared() > 0):
         aim = input_vector.normalized()
+        wiggle += delta * 4
         
     if (reaching):
         if (potential_host):
@@ -92,4 +95,15 @@ func _draw():
     if (reaching):
         var thickness = 4
         if (potential_host): thickness = 8
-        draw_line(Vector2.ZERO,tentacle_tip,Color.GREEN,thickness)
+        # draw_line(Vector2.ZERO,tentacle_tip,Color.GREEN,thickness)
+
+        var resolution = 20 
+        var perpendicular = tentacle_tip.rotated(PI / 2).normalized()
+        var length = tentacle_tip.length()
+
+        var points = []
+        for i in resolution:
+            var easing: float = min(i,4) / 4
+            var offset1: Vector2 = perpendicular * sin(i + wiggle) * min((resolution - i)*(resolution - i) * 0.05 + 1,24) * easing
+            points.push_back(tentacle_tip.normalized() * i * length / resolution + offset1)
+        draw_polyline(points,Color.GREEN,4)
