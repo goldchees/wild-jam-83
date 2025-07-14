@@ -52,7 +52,7 @@ target = NodePath("../Player")
 [node name="UI" type="Node2D" parent="Camera2D"]
 position = Vector2(-756, -414)
 
-[node name="energyBar" type="ProgressBar" parent="."]
+[node name="energyBar" type="ProgressBar" parent="Camera2D/UI"]
 offset_left = 417.0
 offset_top = 667.0
 offset_right = 1090.0

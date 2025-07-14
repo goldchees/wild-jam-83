@@ -70,11 +70,13 @@ func _process(delta: float) -> void:
 		if (host != null):
 			leave_host()
 	
-	if (is_possessing and $"../../energyBar".value > 0):
-		$"../../energyBar".value += 0.1
+	if (is_possessing and $"../../Camera2D/UI/energyBar".value > 0):
+		#$"../../energyBar".value += 0.1
+		$"../../Camera2D/UI/energyBar".value += 0.1
 		get_parent().lose_energy()
 	else:
-		$"../energyBar".value -= 0.1
+		#$"../energyBar".value -= 0.1
+		$"../Camera2D/UI/energyBar".value -= 0.1
 	
 	queue_redraw()
 
