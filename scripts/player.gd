@@ -5,6 +5,7 @@ extends Actor
 
 var wasd: Array[String] = ["move_left","move_right","move_up","move_down"]
 var reach_action = "action_1"
+var action2 = "action_2"
 
 var aim: Vector2
 var reach = 200
@@ -65,7 +66,7 @@ func _process(delta: float) -> void:
 		host.move(input_vector)
 	else: self.move(input_vector)
 	
-	if (Input.is_action_just_pressed("action_2")):
+	if (Input.is_action_just_pressed(action2)):
 		if (host != null):
 			leave_host()
 	
@@ -103,10 +104,6 @@ func _draw():
 	draw_circle(Vector2.ZERO,48,Color.GREEN,false)
 
 	if (reaching):
-		var thickness = 4
-		if (potential_host): thickness = 8
-		# draw_line(Vector2.ZERO,tentacle_tip,Color.GREEN,thickness)
-
 		var resolution = 20 
 		var perpendicular = tentacle_tip.rotated(PI / 2).normalized()
 		var length = tentacle_tip.length()
