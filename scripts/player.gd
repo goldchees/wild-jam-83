@@ -21,10 +21,11 @@ var wiggle = 0
 
 var is_possessing = false
 
-@onready var energy_bar: ProgressBar = %energyBar
+func _ready():
+    energy_bar = %energyBar
 
 func _process(delta: float) -> void:
-
+    super(delta)
     if (Input.is_action_just_pressed(reach_action)):
         reaching = true
         tentacle_tip = Vector2.ZERO
@@ -77,12 +78,12 @@ func _process(delta: float) -> void:
     
     if (energy_bar.value > 0):
         if (is_possessing):
-            #$"../../energyBar".value += 0.1
-            energy_bar.value += 0.1
-            get_parent().lose_energy()
+            energy += delta * 10
+            host.energy -= delta * 10
         else:
-            #$"../energyBar".value -= 0.1
-            energy_bar.value -= 0.1
+            energy -= delta * 5
+    
+    energy_bar.value = energy
     
     queue_redraw()
 
