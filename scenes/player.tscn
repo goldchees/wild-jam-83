@@ -1,15 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxhk72wc2h2r7"]
+[gd_scene load_steps=5 format=3 uid="uid://0ttdc2eydk86"]
 
 [ext_resource type="PackedScene" uid="uid://310ph4lsp0t8" path="res://scenes/actor.tscn" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://cxpfrldjugq8j" path="res://scripts/player.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://cfkrxnyrfyehj" path="res://scripts/dash_ability.gd" id="3_qhqgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u32jr"]
-radius = 32.0
+radius = 24.0
 
-[node name="Player" instance=ExtResource("1_4flbx")]
+[node name="Player" node_paths=PackedStringArray("host") instance=ExtResource("1_4flbx")]
+script = ExtResource("2_g2els")
+host = NodePath(".")
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(0.41004, 0.67, 0.0201, 1)
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.35, 0.35)
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_u32jr")
+
+[node name="dash_ability" type="Node2D" parent="." index="2"]
+script = ExtResource("3_qhqgy")

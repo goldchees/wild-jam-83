@@ -1,14 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://bewnpp2hypupy"]
+[gd_scene load_steps=9 format=4 uid="uid://bewnpp2hypupy"]
 
-[ext_resource type="PackedScene" uid="uid://310ph4lsp0t8" path="res://scenes/actor.tscn" id="1_37kl0"]
-[ext_resource type="Script" uid="uid://cxpfrldjugq8j" path="res://scripts/player.gd" id="2_8uh7m"]
 [ext_resource type="PackedScene" uid="uid://b5813cp1ww1g8" path="res://scenes/entity.tscn" id="3_6uqi0"]
 [ext_resource type="Script" uid="uid://3rw8577ktcri" path="res://scripts/camera_controller.gd" id="4_ppyta"]
 [ext_resource type="Texture2D" uid="uid://8kskkqdaqsal" path="res://assets/icon.svg" id="5_ykrsh"]
 [ext_resource type="PackedScene" uid="uid://l434tuoh7hpu" path="res://scenes/enemy_guard.tscn" id="6_g14j6"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8uh7m"]
-radius = 32.0
+[ext_resource type="PackedScene" uid="uid://0ttdc2eydk86" path="res://scenes/player.tscn" id="6_vbegm"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_ykrsh"]
 tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 1610612736, 1, 1, 1342177280, 65537, 1, 805306368)
@@ -27,6 +23,10 @@ pattern_0 = SubResource("TileMapPattern_ykrsh")
 
 [node name="Test" type="Node2D"]
 
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAIAAYAAQAAAAAAAAAIAAcAAQAAAAAAAGAJAAYAAQAAAAAAAFAJAAcAAQAAAAAAADAIAAgAAQAAAAAAAAAIAAkAAQAAAAAAAGAJAAgAAQAAAAAAAFAJAAkAAQAAAAAAADAIAAoAAQAAAAAAAAAIAAsAAQAAAAAAAGAJAAoAAQAAAAAAAFAJAAsAAQAAAAAAADAIAAwAAQAAAAAAAAAIAA0AAQAAAAAAAGAJAAwAAQAAAAAAAFAJAA0AAQAAAAAAADAIAA4AAQAAAAAAAAAIAA8AAQAAAAAAAGAJAA4AAQAAAAAAAFAJAA8AAQAAAAAAADAKAA4AAQAAAAAAAAAKAA8AAQAAAAAAAGALAA4AAQAAAAAAAFALAA8AAQAAAAAAADAMAA4AAQAAAAAAAAAMAA8AAQAAAAAAAGANAA4AAQAAAAAAAFANAA8AAQAAAAAAADAOAA4AAQAAAAAAAAAOAA8AAQAAAAAAAGAPAA4AAQAAAAAAAFAPAA8AAQAAAAAAADAQAA4AAQAAAAAAAAAQAA8AAQAAAAAAAGARAA4AAQAAAAAAAFARAA8AAQAAAAAAADAWAA4AAQAAAAAAAAAWAA8AAQAAAAAAAGAXAA4AAQAAAAAAAFAXAA8AAQAAAAAAADAYAA4AAQAAAAAAAAAYAA8AAQAAAAAAAGAZAA4AAQAAAAAAAFAZAA8AAQAAAAAAADAaAA4AAQAAAAAAAAAaAA8AAQAAAAAAAGAbAA4AAQAAAAAAAFAbAA8AAQAAAAAAADAaABAAAQAAAAAAAAAaABEAAQAAAAAAAGAbABAAAQAAAAAAAFAbABEAAQAAAAAAADAaABIAAQAAAAAAAAAaABMAAQAAAAAAAGAbABIAAQAAAAAAAFAbABMAAQAAAAAAADA=")
+tile_set = SubResource("TileSet_ppyta")
+
 [node name="Entity" parent="." instance=ExtResource("3_6uqi0")]
 position = Vector2(608, 191)
 
@@ -35,18 +35,6 @@ position = Vector2(890, 353)
 
 [node name="Guard" parent="." instance=ExtResource("6_g14j6")]
 position = Vector2(334, 114)
-
-[node name="Player" parent="." node_paths=PackedStringArray("host") instance=ExtResource("1_37kl0")]
-position = Vector2(433, 352)
-scale = Vector2(1.0066, 1)
-script = ExtResource("2_8uh7m")
-host = NodePath(".")
-
-[node name="Sprite2D" parent="Player" index="0"]
-modulate = Color(0.153333, 0.301549, 0.121444, 1)
-
-[node name="CollisionShape2D" parent="Player" index="1"]
-shape = SubResource("CircleShape2D_8uh7m")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(756, 414)
@@ -64,8 +52,5 @@ offset_right = 1090.0
 offset_bottom = 694.0
 value = 50.0
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAIAAYAAQAAAAAAAAAIAAcAAQAAAAAAAGAJAAYAAQAAAAAAAFAJAAcAAQAAAAAAADAIAAgAAQAAAAAAAAAIAAkAAQAAAAAAAGAJAAgAAQAAAAAAAFAJAAkAAQAAAAAAADAIAAoAAQAAAAAAAAAIAAsAAQAAAAAAAGAJAAoAAQAAAAAAAFAJAAsAAQAAAAAAADAIAAwAAQAAAAAAAAAIAA0AAQAAAAAAAGAJAAwAAQAAAAAAAFAJAA0AAQAAAAAAADAIAA4AAQAAAAAAAAAIAA8AAQAAAAAAAGAJAA4AAQAAAAAAAFAJAA8AAQAAAAAAADAKAA4AAQAAAAAAAAAKAA8AAQAAAAAAAGALAA4AAQAAAAAAAFALAA8AAQAAAAAAADAMAA4AAQAAAAAAAAAMAA8AAQAAAAAAAGANAA4AAQAAAAAAAFANAA8AAQAAAAAAADAOAA4AAQAAAAAAAAAOAA8AAQAAAAAAAGAPAA4AAQAAAAAAAFAPAA8AAQAAAAAAADAQAA4AAQAAAAAAAAAQAA8AAQAAAAAAAGARAA4AAQAAAAAAAFARAA8AAQAAAAAAADAWAA4AAQAAAAAAAAAWAA8AAQAAAAAAAGAXAA4AAQAAAAAAAFAXAA8AAQAAAAAAADAYAA4AAQAAAAAAAAAYAA8AAQAAAAAAAGAZAA4AAQAAAAAAAFAZAA8AAQAAAAAAADAaAA4AAQAAAAAAAAAaAA8AAQAAAAAAAGAbAA4AAQAAAAAAAFAbAA8AAQAAAAAAADAaABAAAQAAAAAAAAAaABEAAQAAAAAAAGAbABAAAQAAAAAAAFAbABEAAQAAAAAAADAaABIAAQAAAAAAAAAaABMAAQAAAAAAAGAbABIAAQAAAAAAAFAbABMAAQAAAAAAADA=")
-tile_set = SubResource("TileSet_ppyta")
-
-[editable path="Player"]
+[node name="Player" parent="." instance=ExtResource("6_vbegm")]
+position = Vector2(492, 324)
