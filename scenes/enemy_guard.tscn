@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://l434tuoh7hpu"]
+
+[ext_resource type="Script" uid="uid://5ydcryb0e0ot" path="res://scripts/enemy_guard.gd" id="1_u00h0"]
+[ext_resource type="Texture2D" uid="uid://8kskkqdaqsal" path="res://assets/icon.svg" id="2_tuvvq"]
+[ext_resource type="Script" uid="uid://2u04mrwnvumn" path="res://scripts/states/state_machine.gd" id="3_tuvvq"]
+[ext_resource type="Script" uid="uid://dntiteq6lwoqq" path="res://scripts/states/guard/guard_idle.gd" id="4_an4mu"]
+[ext_resource type="Script" uid="uid://bjf1syja3qwh" path="res://scripts/states/guard/guard_walk.gd" id="5_qbm0j"]
+[ext_resource type="Script" uid="uid://c7ghx8d6ga15f" path="res://scripts/states/guard/guard_detect.gd" id="6_8yuu7"]
+[ext_resource type="Script" uid="uid://c7vf5kjy3hww2" path="res://scripts/states/guard/guard_follow.gd" id="7_ug1xp"]
+[ext_resource type="Script" uid="uid://jgf01duanbfh" path="res://scripts/states/guard/guard_attack.gd" id="8_xge5v"]
+[ext_resource type="PackedScene" uid="uid://5e4iweyo4byj" path="res://scenes/bullet.tscn" id="9_qbm0j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
+radius = 64.0
+
+[node name="Guard" type="CharacterBody2D"]
+script = ExtResource("1_u00h0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.721569, 1, 0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tuvvq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_4gyqm")
+
+[node name="entityEnergyBar" type="ProgressBar" parent="."]
+offset_left = -84.0
+offset_top = -73.0
+offset_right = 89.0
+offset_bottom = -46.0
+value = 100.0
+
+[node name="RaycastHolder" type="Node2D" parent="."]
+
+[node name="RayCast2D3" type="RayCast2D" parent="RaycastHolder"]
+rotation = 0.523599
+target_position = Vector2(170, 0)
+
+[node name="RayCast2D4" type="RayCast2D" parent="RaycastHolder"]
+rotation = 0.261799
+scale = Vector2(1, 1)
+target_position = Vector2(170, 0)
+
+[node name="RayCast2D5" type="RayCast2D" parent="RaycastHolder"]
+rotation = -0.261799
+scale = Vector2(1, 1)
+target_position = Vector2(170, 0)
+
+[node name="RayCast2D2" type="RayCast2D" parent="RaycastHolder"]
+rotation = -0.523599
+target_position = Vector2(170, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="RaycastHolder"]
+target_position = Vector2(170, 0)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_tuvvq")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_an4mu")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("5_qbm0j")
+
+[node name="Detect" type="Node" parent="StateMachine"]
+script = ExtResource("6_8yuu7")
+
+[node name="Follow" type="Node" parent="StateMachine"]
+script = ExtResource("7_ug1xp")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("8_xge5v")
+Bullet = ExtResource("9_qbm0j")
+
+[node name="BulletMarker" type="Marker2D" parent="."]
+position = Vector2(50, 0)
+
+[node name="BulletTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="BulletTimer" to="StateMachine/Attack" method="_on_bullet_timer_timeout"]

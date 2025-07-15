@@ -20,6 +20,8 @@ var wiggle = 0
 
 var is_possessing = false
 
+@onready var energy_bar: ProgressBar = %energyBar
+
 func _process(delta: float) -> void:
 	if (Input.is_action_just_pressed(reach_action)):
 		reaching = true
@@ -70,13 +72,14 @@ func _process(delta: float) -> void:
 		if (host != null):
 			leave_host()
 	
-	if (is_possessing and $"../../Camera2D/UI/energyBar".value > 0):
-		#$"../../energyBar".value += 0.1
-		$"../../Camera2D/UI/energyBar".value += 0.1
-		get_parent().lose_energy()
-	else:
-		#$"../energyBar".value -= 0.1
-		$"../Camera2D/UI/energyBar".value -= 0.1
+	if (energy_bar.value > 0):
+		if (is_possessing):
+			#$"../../energyBar".value += 0.1
+			energy_bar.value += 0.1
+			get_parent().lose_energy()
+		else:
+			#$"../energyBar".value -= 0.1
+			energy_bar.value -= 0.1
 	
 	queue_redraw()
 
