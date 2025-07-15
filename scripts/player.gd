@@ -3,11 +3,12 @@ extends Actor
 
 @export var host: Actor
 
-var wasd: Array[String] = ["move_left","move_right","move_up","move_down"]
+var move_actions: Array[String] = ["move_left","move_right","move_up","move_down"]
+var aim_actions: Array[String] = ["aim_left","aim_right","aim_up","aim_down"]
 var reach_action = "action_1"
 var action2 = "action_2"
 
-var aim: Vector2
+var aim := Vector2.UP
 var reach = 200
 
 var tentacle_tip: Vector2
@@ -44,12 +45,10 @@ func _process(delta: float) -> void:
 			possess(potential_host)
 		reaching = false
 		potential_host = null
-		
 
-
-	var input_vector = Input.get_vector(wasd[0],wasd[1],wasd[2],wasd[3])
+	var input_vector = Input.get_vector(move_actions[0],move_actions[1],move_actions[2],move_actions[3])
 	if (input_vector.length_squared() > 0):
-		aim = input_vector.normalized()
+		# aim = input_vector.normalized()
 		wiggle += delta * 4
 		
 	if (reaching):
@@ -82,6 +81,13 @@ func _process(delta: float) -> void:
 			energy_bar.value -= 0.1
 	
 	queue_redraw()
+
+func _input(event: InputEvent) -> void:
+	var aim_input_vector = Input.get_vector(aim_actions[0],aim_actions[1],aim_actions[2],aim_actions[3])
+	if aim_input_vector.length_squared() > 0:
+		aim = aim_input_vector.normalized()
+	if event is InputEventMouseMotion && !event.relative.is_zero_approx():
+		aim = global_position.direction_to(get_global_mouse_position())
 
 func leave_host():
 	if (host == self): return
