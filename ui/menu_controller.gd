@@ -15,6 +15,7 @@ func all_menus():
     return [main_menu,options_menu,credits_menu]
 
 func _ready() -> void:
+    visible = true
     process_mode = Node.PROCESS_MODE_ALWAYS
     resume_game()
 

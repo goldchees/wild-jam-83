@@ -59,6 +59,7 @@ position = Vector2(492, 324)
 [node name="Guard2" parent="." instance=ExtResource("6_g14j6")]
 position = Vector2(868, 119)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Menus" type="CanvasLayer" parent="."]
 
-[node name="Control" parent="CanvasLayer" instance=ExtResource("6_ehkex")]
+[node name="Control" parent="Menus" instance=ExtResource("6_ehkex")]
+visible = false
