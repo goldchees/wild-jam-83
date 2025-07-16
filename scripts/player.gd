@@ -121,8 +121,10 @@ func possess(target: Actor):
 		host.is_possessed = true
 
 func _draw():
+	var color = Color.LIME_GREEN
+
 	draw_line(Vector2.ZERO,aim * 48,Color.WHITE, 6.0)
-	draw_circle(Vector2.ZERO,48,Color.GREEN,false)
+	draw_circle(Vector2.ZERO,48,color,false)
 
 	if (reaching):
 		var resolution = 20 
@@ -134,17 +136,18 @@ func _draw():
 			var easing: float = min(i,4) / 4
 			var offset1: Vector2 = perpendicular * sin(i + wiggle) * min((resolution - i)*(resolution - i) * 0.05 + 1,24) * easing
 			points.push_back(tentacle_tip.normalized() * i * length / resolution + offset1)
-		draw_polyline(points,Color.GREEN,4)
+		draw_polyline(points,color,4)
 	
-	var pulse_radius = 36 + sin(wiggle) * 0.75
-	draw_circle(Vector2.ZERO, pulse_radius, Color.GREEN, true)
-	var wiggle_resolution = 18
-	var radius = 32.0
-	var wiggle_length = 11.0
-	for i in wiggle_resolution:
-		var angle = i * TAU / wiggle_resolution
-		var dir = Vector2.RIGHT.rotated(angle)
-		var base_pos = dir * radius
-		var wiggle_offset = sin(wiggle + i) * 5.0
-		var end_pos = base_pos + dir * wiggle_length + dir.rotated(PI / 2) * wiggle_offset
-		draw_line(base_pos, end_pos, Color.GREEN, 3.5)
+	if (!is_possessing):
+		var pulse_radius = 36 + sin(wiggle) * 0.75
+		draw_circle(Vector2.ZERO, pulse_radius, color, true)
+		var wiggle_resolution = 18
+		var radius = 32.0
+		var wiggle_length = 11.0
+		for i in wiggle_resolution:
+			var angle = i * TAU / wiggle_resolution
+			var dir = Vector2.RIGHT.rotated(angle)
+			var base_pos = dir * radius
+			var wiggle_offset = sin(wiggle + i) * 5.0
+			var end_pos = base_pos + dir * wiggle_length + dir.rotated(PI / 2) * wiggle_offset
+			draw_line(base_pos, end_pos, color, 3.5)

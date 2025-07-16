@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://bewnpp2hypupy"]
+[gd_scene load_steps=10 format=4 uid="uid://bewnpp2hypupy"]
 
 [ext_resource type="PackedScene" uid="uid://b5813cp1ww1g8" path="res://scenes/entity.tscn" id="3_6uqi0"]
 [ext_resource type="Script" uid="uid://3rw8577ktcri" path="res://scripts/camera_controller.gd" id="4_ppyta"]
 [ext_resource type="Texture2D" uid="uid://8kskkqdaqsal" path="res://assets/icon.svg" id="5_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://br4f1oqurh7vs" path="res://ui/menus.tscn" id="6_ehkex"]
 [ext_resource type="PackedScene" uid="uid://l434tuoh7hpu" path="res://scenes/enemy_guard.tscn" id="6_g14j6"]
 [ext_resource type="PackedScene" uid="uid://0ttdc2eydk86" path="res://scenes/player.tscn" id="6_vbegm"]
 
@@ -54,3 +55,10 @@ value = 50.0
 
 [node name="Player" parent="." instance=ExtResource("6_vbegm")]
 position = Vector2(492, 324)
+
+[node name="Guard2" parent="." instance=ExtResource("6_g14j6")]
+position = Vector2(868, 119)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("6_ehkex")]
