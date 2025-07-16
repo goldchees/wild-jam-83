@@ -101,6 +101,7 @@ func leave_host():
 	position = host.position + aim
 	$CollisionShape2D.disabled = false
 	$Sprite2D.visible = true
+	host.is_possessed = false
 	host = self
 	is_possessing = false
 
@@ -114,6 +115,10 @@ func possess(target: Actor):
 	host.add_child(self)
 	queue_redraw()
 	is_possessing = true
+	if (host == self):
+		host.is_possessed = false
+	else:
+		host.is_possessed = true
 
 func _draw():
 	draw_line(Vector2.ZERO,aim * 48,Color.WHITE, 6.0)

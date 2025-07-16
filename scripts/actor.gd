@@ -7,6 +7,8 @@ extends CharacterBody2D
 var max_energy : float = 100.0
 var died := false
 
+var is_possessed : bool = false
+
 
 func _process(delta):
 	if energy > max_energy:

@@ -6,15 +6,20 @@ func handle_input(_event: InputEvent) -> void:
 func handle_process(_delta: float) -> void:
 	pass
 
-func handle_physics_process(_delta: float) -> void:
+func handle_physics_process(delta: float) -> void:
+	if guard.pathway == null:
+		guard.rotate(1 * delta)
+	else:
+		pass
+	guard.current_position = guard.global_position
+	
 	if guard.target != null:
-		if guard.target.is_possessing:
+		if guard.target.is_possessed:
 			state_finished.emit(FOLLOW)
-			print("S")
+			print("EnterFollowState")
 		else:
 			state_finished.emit(ATTACK)
-			print("X")
+			print("EnterAttackState")
 
 func enter_state(previous_state : String, data := {}) -> void:
-	guard.velocity = Vector2.ZERO
-	
+	guard.target = null

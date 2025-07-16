@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://l434tuoh7hpu"]
+[gd_scene load_steps=10 format=3 uid="uid://l434tuoh7hpu"]
 
 [ext_resource type="Script" uid="uid://5ydcryb0e0ot" path="res://scripts/enemy_guard.gd" id="1_u00h0"]
 [ext_resource type="Texture2D" uid="uid://8kskkqdaqsal" path="res://assets/icon.svg" id="2_tuvvq"]
 [ext_resource type="Script" uid="uid://2u04mrwnvumn" path="res://scripts/states/state_machine.gd" id="3_tuvvq"]
 [ext_resource type="Script" uid="uid://dntiteq6lwoqq" path="res://scripts/states/guard/guard_idle.gd" id="4_an4mu"]
-[ext_resource type="Script" uid="uid://bjf1syja3qwh" path="res://scripts/states/guard/guard_walk.gd" id="5_qbm0j"]
-[ext_resource type="Script" uid="uid://c7ghx8d6ga15f" path="res://scripts/states/guard/guard_detect.gd" id="6_8yuu7"]
+[ext_resource type="Script" uid="uid://bjf1syja3qwh" path="res://scripts/states/guard/guard_return.gd" id="5_qbm0j"]
 [ext_resource type="Script" uid="uid://c7vf5kjy3hww2" path="res://scripts/states/guard/guard_follow.gd" id="7_ug1xp"]
 [ext_resource type="Script" uid="uid://jgf01duanbfh" path="res://scripts/states/guard/guard_attack.gd" id="8_xge5v"]
 [ext_resource type="PackedScene" uid="uid://5e4iweyo4byj" path="res://scenes/bullet.tscn" id="9_qbm0j"]
@@ -60,11 +59,8 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_an4mu")
 
-[node name="Walk" type="Node" parent="StateMachine"]
+[node name="Return" type="Node" parent="StateMachine"]
 script = ExtResource("5_qbm0j")
-
-[node name="Detect" type="Node" parent="StateMachine"]
-script = ExtResource("6_8yuu7")
 
 [node name="Follow" type="Node" parent="StateMachine"]
 script = ExtResource("7_ug1xp")
@@ -79,6 +75,6 @@ position = Vector2(50, 0)
 [node name="BulletTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.5
-autostart = true
+one_shot = true
 
 [connection signal="timeout" from="BulletTimer" to="StateMachine/Attack" method="_on_bullet_timer_timeout"]

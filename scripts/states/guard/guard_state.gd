@@ -1,8 +1,7 @@
 class_name GuardState extends State
 
 const IDLE = "Idle"
-const WALK = "Walk"
-const DETECT = "Detect"
+const RETURN = "Return"
 const FOLLOW = "Follow"
 const ATTACK = "Attack"
 
