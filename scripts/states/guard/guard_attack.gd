@@ -2,6 +2,7 @@ extends GuardState
 @export var Bullet : PackedScene
 @onready var bullet_timer: Timer = %BulletTimer
 @onready var bullet_marker: Marker2D = $"../../BulletMarker"
+@onready var sprite_2d: Sprite2D = $"../../Sprite2D"
 
 func handle_input(_event: InputEvent) -> void:
 	pass
@@ -12,6 +13,7 @@ func handle_process(_delta: float) -> void:
 func handle_physics_process(_delta: float) -> void:
 	if guard.target != null:
 		guard.aim_at(guard.target.position)
+		sprite_2d.rotation = guard.aim.angle() + PI/2
 
 func enter_state(previous_state : String, data := {}) -> void:
 	bullet_timer.start(0.0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://0ttdc2eydk86"]
+[gd_scene load_steps=7 format=3 uid="uid://0ttdc2eydk86"]
 
 [ext_resource type="Script" uid="uid://cxpfrldjugq8j" path="res://scripts/player.gd" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://8kskkqdaqsal" path="res://assets/icon.svg" id="2_qhqgy"]
@@ -6,6 +6,15 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u32jr"]
 radius = 24.0
+
+[sub_resource type="Gradient" id="Gradient_qhqgy"]
+offsets = PackedFloat32Array(0, 0.715789)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dqkch"]
+gradient = SubResource("Gradient_qhqgy")
+fill = 1
+fill_from = Vector2(0.492593, 0.509259)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("host")]
 rotation = 0.000592951
@@ -23,5 +32,12 @@ shape = SubResource("CircleShape2D_u32jr")
 
 [node name="dash_ability" type="Node2D" parent="."]
 script = ExtResource("3_qhqgy")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1.51396e-05, -4.38573e-05)
+scale = Vector2(14.8788, 14.1454)
+energy = 0.5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_dqkch")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://l434tuoh7hpu"]
+[gd_scene load_steps=9 format=3 uid="uid://l434tuoh7hpu"]
 
 [ext_resource type="Script" uid="uid://5ydcryb0e0ot" path="res://scripts/enemy_guard.gd" id="1_u00h0"]
-[ext_resource type="Texture2D" uid="uid://8kskkqdaqsal" path="res://assets/icon.svg" id="2_tuvvq"]
+[ext_resource type="Texture2D" uid="uid://8vo3mtle8e8u" path="res://assets/gwj83-guard.png" id="2_0kgvk"]
 [ext_resource type="Script" uid="uid://2u04mrwnvumn" path="res://scripts/states/state_machine.gd" id="3_tuvvq"]
 [ext_resource type="Script" uid="uid://dntiteq6lwoqq" path="res://scripts/states/guard/guard_idle.gd" id="4_an4mu"]
-[ext_resource type="Script" uid="uid://bjf1syja3qwh" path="res://scripts/states/guard/guard_return.gd" id="5_qbm0j"]
 [ext_resource type="Script" uid="uid://c7vf5kjy3hww2" path="res://scripts/states/guard/guard_follow.gd" id="7_ug1xp"]
 [ext_resource type="Script" uid="uid://jgf01duanbfh" path="res://scripts/states/guard/guard_attack.gd" id="8_xge5v"]
 [ext_resource type="PackedScene" uid="uid://5e4iweyo4byj" path="res://scenes/bullet.tscn" id="9_qbm0j"]
@@ -16,9 +15,8 @@ radius = 64.0
 script = ExtResource("1_u00h0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.721569, 1, 0, 1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_tuvvq")
+scale = Vector2(2, 2)
+texture = ExtResource("2_0kgvk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -60,7 +58,6 @@ initial_state = NodePath("Idle")
 script = ExtResource("4_an4mu")
 
 [node name="Return" type="Node" parent="StateMachine"]
-script = ExtResource("5_qbm0j")
 
 [node name="Follow" type="Node" parent="StateMachine"]
 script = ExtResource("7_ug1xp")
@@ -70,7 +67,7 @@ script = ExtResource("8_xge5v")
 Bullet = ExtResource("9_qbm0j")
 
 [node name="BulletMarker" type="Marker2D" parent="."]
-position = Vector2(50, 0)
+position = Vector2(39, 0)
 
 [node name="BulletTimer" type="Timer" parent="."]
 unique_name_in_owner = true
