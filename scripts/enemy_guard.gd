@@ -13,6 +13,8 @@ func _process(delta: float) -> void:
 	super(delta)
 	if self.is_possessed:
 		return
+
+	raycast_holder.look_at(global_position + aim)
 	raycast_detection()
 
 func raycast_detection() -> void:

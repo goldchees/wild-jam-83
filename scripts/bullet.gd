@@ -1,4 +1,5 @@
 extends Area2D
+class_name Bullet
 @export var speed = 300
 
 func _process(delta: float) -> void:

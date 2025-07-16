@@ -8,7 +8,6 @@ var aim_actions: Array[String] = ["aim_left","aim_right","aim_up","aim_down"]
 var reach_action = "action_1"
 var action2 = "action_2"
 
-var aim := Vector2.UP
 var reach = 200
 
 var tentacle_tip: Vector2

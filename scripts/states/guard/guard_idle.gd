@@ -8,7 +8,7 @@ func handle_process(_delta: float) -> void:
 
 func handle_physics_process(delta: float) -> void:
 	if guard.pathway == null:
-		guard.rotate(1 * delta)
+		guard.aim = guard.aim.rotated(1 * delta)
 	else:
 		pass
 	guard.current_position = guard.global_position

@@ -9,6 +9,10 @@ var died := false
 
 var is_possessed : bool = false
 
+var aim: Vector2 = Vector2.UP
+
+func aim_at(vector: Vector2):
+	aim = global_position.direction_to(vector)
 
 func _process(delta):
 	if energy > max_energy:
@@ -16,6 +20,7 @@ func _process(delta):
 	if energy <= 0 && !died:
 		die()
 	update_energy_bar()
+	queue_redraw()
 
 		
 func lose_energy():
@@ -34,3 +39,7 @@ func move(input_vector: Vector2):
 func update_energy_bar():
 	if (energy_bar):
 		energy_bar.value = energy
+
+func _draw():
+	# if (!is_possessed):
+		draw_line(Vector2.ZERO,aim * 48,Color.WHITE, 6.0)

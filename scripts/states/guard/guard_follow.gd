@@ -24,7 +24,7 @@ func handle_process(_delta: float) -> void:
 		print("EnterAttackState")
 
 func handle_physics_process(delta: float) -> void:
-	guard.look_at(guard.target.position)
+	guard.aim_at(guard.target.position)
 	if guard.global_position.distance_to(guard.target.global_position) > 150:
 		guard.global_position = guard.global_position.move_toward(guard.target.global_position, guard.speed * delta)
 		guard.move_and_slide()
@@ -35,4 +35,3 @@ func enter_state(previous_state : String, data := {}) -> void:
 	suspicion = 0
 	lost_trail = 0
 	guard.velocity = Vector2.ZERO
-	

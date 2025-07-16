@@ -11,15 +11,16 @@ func handle_process(_delta: float) -> void:
 
 func handle_physics_process(_delta: float) -> void:
 	if guard.target != null:
-		guard.look_at(guard.target.position)
+		guard.aim_at(guard.target.position)
 
 func enter_state(previous_state : String, data := {}) -> void:
 	bullet_timer.start(0.0)
 
 func _on_bullet_timer_timeout() -> void:
 	if guard.target != null:
-		var bullet_scene = Bullet.instantiate()
+		var bullet_scene: Bullet = Bullet.instantiate()
 		get_tree().root.add_child(bullet_scene)
-		bullet_scene.global_transform = bullet_marker.global_transform
+		bullet_scene.global_transform = guard.raycast_holder.global_transform
+		bullet_scene.global_position = guard.global_position + guard.aim * 48
 		bullet_timer.wait_time = randf_range(0.2, 0.5)
 		bullet_timer.start()
