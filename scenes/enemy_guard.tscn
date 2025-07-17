@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://l434tuoh7hpu"]
 
 [ext_resource type="Script" uid="uid://5ydcryb0e0ot" path="res://scripts/enemy_guard.gd" id="1_u00h0"]
-[ext_resource type="Texture2D" uid="uid://8vo3mtle8e8u" path="res://assets/gwj83-guard.png" id="2_0kgvk"]
+[ext_resource type="Texture2D" uid="uid://cofjj412fvxei" path="res://assets/gwj83-guard-Sheet.png" id="2_0kgvk"]
 [ext_resource type="Script" uid="uid://2u04mrwnvumn" path="res://scripts/states/state_machine.gd" id="3_tuvvq"]
 [ext_resource type="Script" uid="uid://dntiteq6lwoqq" path="res://scripts/states/guard/guard_idle.gd" id="4_an4mu"]
 [ext_resource type="Script" uid="uid://c7vf5kjy3hww2" path="res://scripts/states/guard/guard_follow.gd" id="7_ug1xp"]
@@ -17,6 +17,7 @@ script = ExtResource("1_u00h0")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 texture = ExtResource("2_0kgvk")
+hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.5, 0.5)

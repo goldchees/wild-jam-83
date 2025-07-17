@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8vo3mtle8e8u"
-path="res://.godot/imported/gwj83-guard.png-425b3566aa610ae0faa0771b9f3940be.ctex"
+uid="uid://1q2ppiuglgh5"
+path="res://.godot/imported/gwj83-crate.png-fed4a86e05e4f5b6061849a3044a3c12.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gwj83-guard.png"
-dest_files=["res://.godot/imported/gwj83-guard.png-425b3566aa610ae0faa0771b9f3940be.ctex"]
+source_file="res://assets/gwj83-crate.png"
+dest_files=["res://.godot/imported/gwj83-crate.png-fed4a86e05e4f5b6061849a3044a3c12.ctex"]
 
 [params]
 

@@ -11,6 +11,8 @@ var is_possessed : bool = false
 
 var aim: Vector2 = Vector2.UP
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
 func aim_at(vector: Vector2):
 	aim = global_position.direction_to(vector)
 
@@ -33,6 +35,7 @@ func die():
 
 func move(input_vector: Vector2):
 	velocity = input_vector * speed
+	sprite_2d.rotation = lerp_angle(sprite_2d.rotation, input_vector.angle() + PI / 2, 0.2)
 	move_and_slide()
 	pass
 	

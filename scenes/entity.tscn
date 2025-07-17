@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5813cp1ww1g8"]
 
-[ext_resource type="Texture2D" uid="uid://8kskkqdaqsal" path="res://assets/icon.svg" id="1_7k104"]
 [ext_resource type="Script" uid="uid://dxdrsci7icqg7" path="res://scripts/actor.gd" id="1_m0cyi"]
+[ext_resource type="Texture2D" uid="uid://bqcmxo3m8xkfy" path="res://assets/gwj83-enemy-Sheet.png" id="2_gr72c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
 radius = 64.0
@@ -10,8 +10,9 @@ radius = 64.0
 script = ExtResource("1_m0cyi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_7k104")
+scale = Vector2(2, 2)
+texture = ExtResource("2_gr72c")
+hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.5, 0.5)
