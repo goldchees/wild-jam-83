@@ -11,9 +11,9 @@ func _init() -> void:
 
 func _process(delta: float) -> void:
 	super(delta)
-	if self.is_possessed:
+	if self.is_possessed || self.died:
 		return
-
+	
 	raycast_holder.look_at(global_position + aim)
 	raycast_detection()
 

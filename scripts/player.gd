@@ -60,7 +60,6 @@ func _process(delta: float) -> void:
 	if (tip.length() < wander_length && wiggle < 2):
 		tip = tip.move_toward(aim * wander_length,delta * 200)
 
-
 	if (tentacle_state == Tentacle.PULL_SELF):
 		var global_tip = global_position + tip
 		global_position = global_position.move_toward(global_tip,delta * 800)
@@ -68,7 +67,6 @@ func _process(delta: float) -> void:
 		if (global_position.is_equal_approx(global_tip)):
 			$CollisionShape2D.disabled = false
 			tentacle_state = Tentacle.NONE
-
 
 	if (tentacle_state == Tentacle.NONE):
 		if (Input.is_action_just_pressed(reach_action)):
