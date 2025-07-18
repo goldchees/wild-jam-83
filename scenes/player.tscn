@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://0ttdc2eydk86"]
+[gd_scene load_steps=6 format=3 uid="uid://0ttdc2eydk86"]
 
 [ext_resource type="Script" uid="uid://cxpfrldjugq8j" path="res://scripts/player.gd" id="2_g2els"]
-[ext_resource type="Texture2D" uid="uid://8kskkqdaqsal" path="res://assets/icon.svg" id="2_qhqgy"]
 [ext_resource type="Script" uid="uid://cfkrxnyrfyehj" path="res://scripts/dash_ability.gd" id="3_qhqgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u32jr"]
@@ -25,7 +24,6 @@ host = NodePath(".")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.41004, 0.67, 0.0201, 1)
 scale = Vector2(0.35, 0.35)
-texture = ExtResource("2_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_u32jr")
