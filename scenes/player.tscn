@@ -40,6 +40,6 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_dqkch")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-collision_mask = 12
+collision_mask = 4
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

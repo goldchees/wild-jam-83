@@ -93,11 +93,9 @@ func _process(delta: float) -> void:
 		if (collider is PhysicsBody2D):
 			if (collider.collision_layer == 4):
 				tip = tip.move_toward(Vector2.ZERO, delta * 1000)
-				#tentacle_state = Tentacle.NONE
-				pass
 		elif (collider is TileMapLayer):
-				tip = tip.move_toward(Vector2.ZERO, delta * 1000)
-			
+			tip = tip.move_toward(Vector2.ZERO, delta * 1000)
+
 	if (Input.is_action_just_released(reach_action)):
 		if (tentacle_state == Tentacle.REACH):
 			tentacle_state = Tentacle.NONE
