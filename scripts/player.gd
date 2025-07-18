@@ -84,7 +84,7 @@ func _process(delta: float) -> void:
 
 		var results = get_world_2d().direct_space_state.intersect_point(q)
 		for r in results:
-			if (r.collider is Actor):
+			if (r.collider is Actor and r.collider.died == false):
 				if (r.collider != host):
 					potential_host = r.collider
 		var collider
@@ -101,7 +101,8 @@ func _process(delta: float) -> void:
 			tentacle_state = Tentacle.NONE
 		elif (tentacle_state == Tentacle.GRAB):
 			if (potential_host != null):
-				try_to_enter_target()
+				if (potential_host.died == false):
+					try_to_enter_target()
 			else:
 				tentacle_state = Tentacle.NONE
 
@@ -135,7 +136,7 @@ func _process(delta: float) -> void:
 
 
 	if (energy_bar.value > 0):
-		if (in_host):
+		if (in_host and host.died == false):
 			energy += delta * 10
 			host.energy -= delta * 10
 		else:

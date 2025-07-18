@@ -13,6 +13,9 @@ var aim: Vector2 = Vector2.UP
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
+func _ready() -> void:
+	sprite_2d.frame = 0
+
 func aim_at(vector: Vector2):
 	aim = global_position.direction_to(vector)
 
@@ -29,9 +32,10 @@ func lose_energy():
 	energy -= 0.1
 
 func die():
+	sprite_2d.frame = 1
 	died = true
+	get_child(get_child_count() - 1).leave_host()
 	print(name + " tragically died")
-
 
 func move(input_vector: Vector2):
 	velocity = input_vector * speed

@@ -14,14 +14,14 @@ func handle_physics_process(delta: float) -> void:
 	guard.current_position = guard.global_position
 	
 	if guard.target != null:
-		#if guard.target.is_possessed:
-			#state_finished.emit(FOLLOW)
-			#print("EnterFollowState")
-		#else:
-			#state_finished.emit(ATTACK)
-			#print("EnterAttackState")
-		state_finished.emit(ATTACK)
-		print("EnterAttackState")
+		if guard.target.is_possessed:
+			state_finished.emit(FOLLOW)
+			print("EnterFollowState")
+		else:
+			state_finished.emit(ATTACK)
+			print("EnterAttackState")
+		#state_finished.emit(ATTACK)
+		#print("EnterAttackState")
 
 func enter_state(previous_state : String, data := {}) -> void:
 	guard.target = null
