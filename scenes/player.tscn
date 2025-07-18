@@ -17,6 +17,7 @@ fill_from = Vector2(0.492593, 0.509259)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("host")]
 rotation = 0.000592951
+collision_mask = 7
 input_pickable = true
 script = ExtResource("2_g2els")
 host = NodePath(".")
@@ -37,5 +38,8 @@ scale = Vector2(14.8788, 14.1454)
 energy = 0.5
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_dqkch")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 12
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

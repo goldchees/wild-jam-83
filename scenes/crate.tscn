@@ -9,6 +9,8 @@ polygon = PackedVector2Array(-23, -24, -23, 24, 25, 24, 25, -24)
 size = Vector2(88, 87)
 
 [node name="Crate" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 7
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 scale = Vector2(2, 2)

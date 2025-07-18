@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjvfjtj0y030e"]
+
+[ext_resource type="Texture2D" uid="uid://d38f6y3fv1x4l" path="res://assets/gwj83-serverRack.png" id="1_nkgqx"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xigps"]
+polygon = PackedVector2Array(-26, -26, -26, 12, 23, 12, 23, -26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2wnh"]
+size = Vector2(112, 84)
+
+[node name="ServerRack" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 7
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+scale = Vector2(2.5, 2.5)
+occluder = SubResource("OccluderPolygon2D_xigps")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_nkgqx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -18)
+shape = SubResource("RectangleShape2D_j2wnh")

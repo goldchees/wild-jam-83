@@ -9,6 +9,8 @@ polygon = PackedVector2Array(-72, -46, 70, -46, 70, 24, -72, 24)
 size = Vector2(142, 70)
 
 [node name="Computer" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 7
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_om4aa")
