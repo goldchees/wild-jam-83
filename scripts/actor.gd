@@ -15,6 +15,7 @@ var aim: Vector2 = Vector2.UP
 
 func _ready() -> void:
 	sprite_2d.frame = 0
+	died = false
 
 func aim_at(vector: Vector2):
 	aim = global_position.direction_to(vector)
@@ -34,7 +35,9 @@ func lose_energy():
 func die():
 	sprite_2d.frame = 1
 	died = true
-	get_child(get_child_count() - 1).leave_host()
+	var parasite = get_child(get_child_count() - 1)
+	if parasite.has_method("leave_host"): 
+		parasite.leave_host()
 	print(name + " tragically died")
 
 func move(input_vector: Vector2):

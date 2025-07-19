@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://0ttdc2eydk86"]
+[gd_scene load_steps=11 format=3 uid="uid://0ttdc2eydk86"]
 
 [ext_resource type="Script" uid="uid://cxpfrldjugq8j" path="res://scripts/player.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://cfkrxnyrfyehj" path="res://scripts/dash_ability.gd" id="3_qhqgy"]
@@ -15,7 +15,37 @@ gradient = SubResource("Gradient_qhqgy")
 fill = 1
 fill_from = Vector2(0.492593, 0.509259)
 
+[sub_resource type="Gradient" id="Gradient_g2els"]
+offsets = PackedFloat32Array(0.0143678, 0.721264)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qhqgy"]
+gradient = SubResource("Gradient_g2els")
+
+[sub_resource type="Curve" id="Curve_dqkch"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qlg0r"]
+curve = SubResource("Curve_dqkch")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tuyoq"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 120.0
+damping_min = 35.28
+damping_max = 45.441
+scale_min = 7.0
+scale_max = 9.0
+scale_curve = SubResource("CurveTexture_qlg0r")
+color = Color(0.439333, 1, 0.42, 1)
+color_ramp = SubResource("GradientTexture1D_qhqgy")
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("host")]
+process_mode = 1
 rotation = 0.000592951
 collision_mask = 7
 input_pickable = true
@@ -41,5 +71,15 @@ texture = SubResource("GradientTexture2D_dqkch")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collision_mask = 4
+
+[node name="deathParticles" type="GPUParticles2D" parent="."]
+process_mode = 3
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.8
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_tuyoq")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

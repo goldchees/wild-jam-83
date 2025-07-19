@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://nr2i82qed6pg"]
+[gd_scene load_steps=4 format=3 uid="uid://mtbn0pfoxam4"]
 
 [ext_resource type="Script" uid="uid://ceb77sgpd46o4" path="res://scripts/door.gd" id="1_hpvv5"]
-[ext_resource type="Texture2D" uid="uid://8kskkqdaqsal" path="res://assets/icon.svg" id="2_uvdjg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uvdjg"]
 size = Vector2(124, 32)
@@ -21,9 +20,9 @@ collision_layer = 4
 [node name="collider" type="CollisionShape2D" parent="left"]
 shape = SubResource("RectangleShape2D_uvdjg")
 
-[node name="sprite" type="Sprite2D" parent="left"]
-scale = Vector2(1, 0.2)
-texture = ExtResource("2_uvdjg")
+[node name="Polygon2D" type="Polygon2D" parent="left"]
+color = Color(0.552, 0.5796, 0.69, 1)
+polygon = PackedVector2Array(-63.6512, -12.0364, 60.6201, -12.0364, 63.6512, -10.0304, 63.6512, 10.0304, 58.5995, 13.0395, -63.6512, 12.0364, -63.6512, -12.0364)
 
 [node name="right" type="AnimatableBody2D" parent="."]
 position = Vector2(64, 0)
@@ -33,9 +32,9 @@ collision_layer = 4
 [node name="collider" type="CollisionShape2D" parent="right"]
 shape = SubResource("RectangleShape2D_uvdjg")
 
-[node name="sprite" type="Sprite2D" parent="right"]
-scale = Vector2(1, 0.2)
-texture = ExtResource("2_uvdjg")
+[node name="Polygon2D" type="Polygon2D" parent="right"]
+color = Color(0.552, 0.5796, 0.69, 1)
+polygon = PackedVector2Array(-59.6098, -12.0364, 64.6615, -12.0364, 64.6615, 13.0395, -57.5891, 13.0395, -63.6512, 10.0304, -63.6512, -10.0304)
 
 [node name="area" type="Area2D" parent="."]
 visible = false

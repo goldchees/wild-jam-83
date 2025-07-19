@@ -30,8 +30,13 @@ var wiggle = 0
 var in_host: bool:
 	get: return host != self && host != null
 
+signal player_died
+@onready var death_particles: GPUParticles2D = $deathParticles
+
 func _ready():
 	energy_bar = %energyBar
+	energy_bar.value = 100
+	death_particles.emitting = false
 
 func _process(delta: float) -> void:
 	super(delta)
@@ -138,8 +143,13 @@ func _process(delta: float) -> void:
 			energy += delta * 10
 			host.energy -= delta * 10
 		else:
-			energy -= delta * 5
-	
+			energy -= delta * 25
+	elif energy_bar.value <= 0:
+		death_particles.emitting = true
+		get_tree().paused = true
+		await get_tree().create_timer(1.5).timeout
+		player_died.emit()
+		
 	energy_bar.value = energy
 	
 	queue_redraw()
@@ -187,6 +197,8 @@ func possess(target: Actor):
 	times_possessed += 1
 
 func _draw():
+	if died: return
+	
 	var color = Color.LIME_GREEN
 
 	draw_line(Vector2.ZERO,aim * 48,Color.WHITE, 6.0)
