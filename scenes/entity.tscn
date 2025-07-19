@@ -1,7 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5813cp1ww1g8"]
+[gd_scene load_steps=10 format=3 uid="uid://b5813cp1ww1g8"]
 
 [ext_resource type="Script" uid="uid://dxdrsci7icqg7" path="res://scripts/actor.gd" id="1_m0cyi"]
 [ext_resource type="Texture2D" uid="uid://bqcmxo3m8xkfy" path="res://assets/gwj83-enemy-Sheet.png" id="2_gr72c"]
+[ext_resource type="Texture2D" uid="uid://d252sddsotxat" path="res://assets/ball.png" id="2_lmnk1"]
+[ext_resource type="StyleBox" uid="uid://brdq6rsva15tg" path="res://scenes/bg-bar.tres" id="3_51v4c"]
+[ext_resource type="StyleBox" uid="uid://do6odhop07ajv" path="res://scenes/fill-bar.tres" id="4_lmnk1"]
+
+[sub_resource type="Curve" id="Curve_ygnst"]
+_data = [Vector2(0, 0.0724145), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lmnk1"]
+curve = SubResource("Curve_ygnst")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wd4e3"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 40.0
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_lmnk1")
+color = Color(1, 0, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
 radius = 64.0
@@ -11,10 +32,22 @@ collision_layer = 3
 collision_mask = 7
 script = ExtResource("1_m0cyi")
 
+[node name="bloodParticles" type="GPUParticles2D" parent="."]
+process_mode = 1
+emitting = false
+amount = 15
+texture = ExtResource("2_lmnk1")
+lifetime = 1.1
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wd4e3")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 texture = ExtResource("2_gr72c")
 hframes = 2
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -25,5 +58,15 @@ offset_left = -84.0
 offset_top = -73.0
 offset_right = 89.0
 offset_bottom = -46.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/background = ExtResource("3_51v4c")
+theme_override_styles/fill = ExtResource("4_lmnk1")
 value = 100.0
 metadata/energy_bar = false
+
+[node name="bloodTimer" type="Timer" parent="."]
+wait_time = 0.9
+one_shot = true
+
+[connection signal="finished" from="bloodParticles" to="." method="_on_blood_particles_finished"]
+[connection signal="timeout" from="bloodTimer" to="." method="_on_blood_timer_timeout"]

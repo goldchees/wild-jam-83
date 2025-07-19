@@ -12,6 +12,7 @@ var is_possessed : bool = false
 var aim: Vector2 = Vector2.UP
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var blood_particles: GPUParticles2D = $bloodParticles
 
 func _ready() -> void:
 	sprite_2d.frame = 0
@@ -28,7 +29,6 @@ func _process(delta):
 	update_energy_bar()
 	queue_redraw()
 
-		
 func lose_energy():
 	energy -= 0.1
 
@@ -36,9 +36,14 @@ func die():
 	sprite_2d.frame = 1
 	died = true
 	var parasite = get_child(get_child_count() - 1)
+	if blood_particles:
+		blood_particles.emitting = true
+		$bloodTimer.start()
 	if parasite.has_method("leave_host"): 
 		parasite.leave_host()
 	print(name + " tragically died")
+	set_process(false)
+	set_physics_process(false)
 
 func move(input_vector: Vector2):
 	velocity = input_vector * speed
@@ -53,3 +58,6 @@ func update_energy_bar():
 func _draw():
 	# if (!is_possessed):
 		draw_line(Vector2.ZERO,aim * 48,Color.WHITE, 6.0)
+
+func _on_blood_timer_timeout() -> void:
+	blood_particles.speed_scale = 0

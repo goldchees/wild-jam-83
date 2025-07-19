@@ -27,3 +27,6 @@ func raycast_detection() -> void:
 				continue
 		else:
 			continue
+
+func _on_blood_particles_finished() -> void:
+	blood_particles.speed_scale = 0

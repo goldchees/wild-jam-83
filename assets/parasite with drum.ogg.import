@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://clrnmnn2ldx2y"
+path="res://.godot/imported/parasite with drum.ogg-b9ce6784aeeca6d01042ff898e2b70df.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/parasite with drum.ogg"
+dest_files=["res://.godot/imported/parasite with drum.ogg-b9ce6784aeeca6d01042ff898e2b70df.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
