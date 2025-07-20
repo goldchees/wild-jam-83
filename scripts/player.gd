@@ -18,7 +18,7 @@ var action2 = "action_2"
 var reach = 200
 
 var tip: Vector2
-var tentacle_speed = 600
+var tentacle_speed = 800
 var tentacle_reach = 200
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 
@@ -137,13 +137,12 @@ func _process(delta: float) -> void:
 		else:
 			self.move(input_vector)
 
-
 	if (energy_bar.value > 0):
 		if (in_host and host.died == false):
-			energy += delta * 5
-			host.energy -= delta * 5
+			energy += delta * 20
+			host.energy -= delta * 25
 		else:
-			energy -= delta * 5
+			energy -= delta * 25
 	elif energy_bar.value <= 0:
 		death_particles.emitting = true
 		get_tree().paused = true
@@ -233,13 +232,13 @@ func _draw():
 			var end_pos = base_pos + dir * wiggle_length + dir.rotated(PI / 2) * wiggle_offset
 			draw_line(base_pos, end_pos, color, 3.5)
 
-	var font = ThemeDB.fallback_font
-	draw_string(font,Vector2(0,64),Tentacle.keys()[tentacle_state])
-
-	if (tentacle_state == Tentacle.REACH):
-		if (times_pulled_self < 10 && tip.length() > (tentacle_reach * 1.2) + times_pulled_self || wiggle > 5 + times_pulled_self):
-			draw_string(font,tip+Vector2(0,-62),get_action_key_label(action2) + " to pull",HORIZONTAL_ALIGNMENT_CENTER,-1,22,Color.BLACK)
-			draw_string(font,tip+Vector2(-2,-64),get_action_key_label(action2) + " to pull",HORIZONTAL_ALIGNMENT_CENTER,-1,22,Color.WHITE)
+	#var font = ThemeDB.fallback_font
+	#draw_string(font,Vector2(0,64),Tentacle.keys()[tentacle_state])
+#
+	#if (tentacle_state == Tentacle.REACH):
+		#if (times_pulled_self < 10 && tip.length() > (tentacle_reach * 1.2) + times_pulled_self || wiggle > 5 + times_pulled_self):
+			#draw_string(font,tip+Vector2(0,-62),get_action_key_label(action2) + " to pull",HORIZONTAL_ALIGNMENT_CENTER,-1,22,Color.BLACK)
+			#draw_string(font,tip+Vector2(-2,-64),get_action_key_label(action2) + " to pull",HORIZONTAL_ALIGNMENT_CENTER,-1,22,Color.WHITE)
 
 
 static func get_action_key_label(action: String):

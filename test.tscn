@@ -254,6 +254,7 @@ tile_set = SubResource("TileSet_ppyta")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(756, 414)
+position_smoothing_enabled = true
 script = ExtResource("4_ppyta")
 target = NodePath("../Player")
 

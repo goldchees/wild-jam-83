@@ -24,7 +24,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 
 func _on_level_transition_area_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body is Player or body.is_possessed:
 		var current_scene_file = get_tree().current_scene.scene_file_path
 		var next_level_num = current_scene_file.to_int() + 1
 		var next_level_path = "res://scenes/levels/level_" + str(next_level_num) + ".tscn"

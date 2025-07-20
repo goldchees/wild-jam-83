@@ -47,7 +47,6 @@ process_material = SubResource("ParticleProcessMaterial_wd4e3")
 scale = Vector2(2, 2)
 texture = ExtResource("2_gr72c")
 hframes = 2
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.5, 0.5)

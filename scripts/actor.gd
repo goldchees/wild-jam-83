@@ -1,7 +1,7 @@
 class_name Actor
 extends CharacterBody2D
 
-@export var speed = 400
+@export var speed = 250
 @onready var energy_bar : ProgressBar = get_node_or_null("entityEnergyBar")
 @onready var energy : float = max_energy
 var max_energy : float = 100.0

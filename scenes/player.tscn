@@ -63,9 +63,9 @@ shape = SubResource("CircleShape2D_u32jr")
 script = ExtResource("3_qhqgy")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(1.51396e-05, -4.38573e-05)
-scale = Vector2(14.8788, 14.1454)
-energy = 0.5
+position = Vector2(0.000610352, 1.00003)
+scale = Vector2(9.14136, 8.52188)
+energy = 0.8
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_dqkch")
 
