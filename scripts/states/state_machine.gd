@@ -15,17 +15,14 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if get_parent().died: return
 	state.handle_input(event)
 
 
 func _process(delta: float) -> void:
-	if get_parent().died: return
 	state.handle_process(delta)
 
 
 func _physics_process(delta: float) -> void:
-	if get_parent().died: return
 	state.handle_physics_process(delta)
 
 

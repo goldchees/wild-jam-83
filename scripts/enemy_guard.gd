@@ -28,5 +28,14 @@ func raycast_detection() -> void:
 		else:
 			continue
 
-func _on_blood_particles_finished() -> void:
-	blood_particles.speed_scale = 0
+func _on_detection_area_body_entered(body: Node2D) -> void:
+	if body is Actor:
+		var current_actor: Actor = body
+		if current_actor is Player:
+			target = body
+
+func _on_detection_area_body_exited(body: Node2D) -> void:
+	if body is Actor:
+		var current_actor: Actor = body
+		if current_actor is Player:
+			target = null

@@ -140,10 +140,10 @@ func _process(delta: float) -> void:
 
 	if (energy_bar.value > 0):
 		if (in_host and host.died == false):
-			energy += delta * 25
-			host.energy -= delta * 25
+			energy += delta * 5
+			host.energy -= delta * 5
 		else:
-			energy -= delta * 25
+			energy -= delta * 5
 	elif energy_bar.value <= 0:
 		death_particles.emitting = true
 		get_tree().paused = true

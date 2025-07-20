@@ -7,7 +7,6 @@ const ATTACK = "Attack"
 
 var guard: Guard
 
-
 func _ready() -> void:
 	await owner.ready
 	guard = owner as Guard

@@ -38,7 +38,7 @@ func die():
 	var parasite = get_child(get_child_count() - 1)
 	if blood_particles:
 		blood_particles.emitting = true
-		$bloodTimer.start()
+		get_tree().create_timer(1.1).timeout.connect(_on_blood_timer_timeout)
 	if parasite.has_method("leave_host"): 
 		parasite.leave_host()
 	print(name + " tragically died")

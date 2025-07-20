@@ -64,9 +64,4 @@ theme_override_styles/fill = ExtResource("4_lmnk1")
 value = 100.0
 metadata/energy_bar = false
 
-[node name="bloodTimer" type="Timer" parent="."]
-wait_time = 0.9
-one_shot = true
-
 [connection signal="finished" from="bloodParticles" to="." method="_on_blood_particles_finished"]
-[connection signal="timeout" from="bloodTimer" to="." method="_on_blood_timer_timeout"]
