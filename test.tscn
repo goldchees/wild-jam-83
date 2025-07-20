@@ -156,7 +156,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("transition/ColorRect:modulate")
+tracks/0/path = NodePath("transition/Control/ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -171,7 +171,7 @@ resource_name = "fade_to_black"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("transition/ColorRect:modulate")
+tracks/0/path = NodePath("transition/Control/ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -186,7 +186,7 @@ resource_name = "fade_to_normal"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("transition/ColorRect:modulate")
+tracks/0/path = NodePath("transition/Control/ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -283,10 +283,26 @@ libraries = {
 
 [node name="transition" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="transition"]
+[node name="Control" type="Control" parent="transition"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="transition/Control"]
 visible = false
-offset_right = 1428.0
-offset_bottom = 786.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2702.0
+offset_top = -2949.0
+offset_right = 3124.0
+offset_bottom = 2222.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 

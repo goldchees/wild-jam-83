@@ -35,7 +35,7 @@ position = Vector2(583, 115)
 position = Vector2(262, -711)
 
 [node name="Guard" parent="." index="21" instance=ExtResource("6_s8va5")]
-position = Vector2(286, -323)
+position = Vector2(337, -346)
 
 [node name="Entity2" parent="." index="22" instance=ExtResource("3_nsrm0")]
 position = Vector2(922, -358)
